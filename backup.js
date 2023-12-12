@@ -23,7 +23,10 @@ app.use(express.static('public'));
 app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
 
 // Connect to MongoDB (replace 'auth-app' with your actual database name)
-mongoose.connect("mongodb+srv://whitedevil7628:devil010@cluster0.gr1wse1.mongodb.net/")
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(()=>{
     console.log("Database is connected");
 })
@@ -142,8 +145,8 @@ app.post('/forgot-password', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'sanjivinihealthcarecenter@gmail.com',
-      pass: 'bylw kbty smfv iyxs',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 

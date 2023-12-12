@@ -152,7 +152,7 @@ app.post('/forgot-password', async (req, res) => {
 
   const resetLink = `http://localhost:${PORT}/reset-password/${resetToken}`;
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: 'process.env.EMAIL_USER',
     to: email,
     subject: 'Password Reset',
     text: `Your token: ${resetToken}`,
